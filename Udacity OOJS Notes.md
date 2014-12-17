@@ -57,6 +57,8 @@ sagas[0]; // Logs "BoyPinsRat"
 ....* ####SAGAS2.1
 ......* deed = "Gets"
 
+*Layer 1 
+..* Layer 2
 ##'this' Keyword
 - this will be automatically bound to the correct object automatically
 - How the interpreter knows which binding is correct, resembles the rules for positional function parameters
