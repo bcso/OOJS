@@ -40,22 +40,22 @@ sagas[0]; // Logs "BoyPinsRat"
 		DOES NOT CREATE NEW CONTEXT. uses SAGAS1.3 Context since sagas[1] has been called
 	*/
 ```
-####MAIN
-  sagas = [{f}, {f}]
-  hero = "Boy"
-  newSaga = {f}
-  ####NEWSAGA1
-    foil = "Rat"
-    ####SAGAS1.1
-      deed = "Eyes"
-    ####SAGAS1.2
-      deed = "Digs"
-    ####AGAS1.3
-      deed = "Pins"
-  ####NEWSAGA2
-    foil = "ET"
-    ####SAGAS2.1
-      deed = "Gets"
+* ####MAIN
+..* sagas = [{f}, {f}]
+..* hero = "Boy"
+..* newSaga = {f}
+..* ####NEWSAGA1
+....* foil = "Rat"
+....* ####SAGAS1.1
+......* deed = "Eyes"
+....* ####SAGAS1.2
+......* deed = "Digs"
+....* ####AGAS1.3
+......* deed = "Pins"
+..* ####NEWSAGA2
+....* foil = "ET"
+....* ####SAGAS2.1
+......* deed = "Gets"
 
 ##'this' Keyword
 - this will be automatically bound to the correct object automatically
