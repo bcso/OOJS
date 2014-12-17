@@ -1,7 +1,7 @@
 #Udacity OOJS Notes
 
 ##Clojures
-	- Declare global array to keep track of functions even after they have been returned in a lexical scope.
+- Declare global array to keep track of functions even after they have been returned in a lexical scope.
 
 ```
 var sagas = [];
@@ -58,8 +58,9 @@ sagas[0]; // Logs "BoyPinsRat"
 			deed = "Gets"
 
 ##'this' Keyword
-	- this will be automatically bound to the correct object automatically
-	- How the interpreter knows which binding is correct, resembles the rules for positional function parameters
+- this will be automatically bound to the correct object automatically
+- How the interpreter knows which binding is correct, resembles the rules for positional function parameters
+
 ####What it doesnt map to
 ```	
 var obj = { // .. the object created by the literal this appears within
