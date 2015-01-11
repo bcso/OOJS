@@ -147,9 +147,46 @@ log(this) // <global>
 new r.method(g,b) // brand new object
 ```
 
+##Prototype Chains
+Can copy an object to another object s.t. second object has all properties first one has. OR Can make new object behave like the original by delegating failed lookups to the original one.
 
+**Why?**
+To save memory/ share code.
 
+```
+var gold  = {a:1};
+log(gold.a); // 1
+log(gold.z); // undef
 
+/* This is a ONE-TIME PROPERTY COPY */
+var blue = extend({},gold); // Assume there is for loop copying the values of gold to blue...
+log(blue.z); // undef
 
+/* this is ONGOING LOOKUP-TIME DELEGATION */ 
+var rose = Object.create(gold); //Constantly uses gold as "fallback" for property checking
+rose.b = 2;
+log(rose.a) // 1
+log(rose.z) // undef
 
+gold.z = 3;
 
+log(blue.z); // undef
+log(rose.z); // 3
+
+```
+####The chain
+...Rose has a fallback too, the Object prototype. All objects in JS have a top level prototype to fall back to, the **Object** prototype. Arrays have an independant array prototype, which is delegated to by the Object prototype.
+
+```
+
+rose.toString(); //toString() is a top level function that all JS objects have
+
+var array1 = [];
+array1.constructor() = Array
+
+var obj1 = {};
+obj1.constructor() = Object
+
+/*The two vars above have their own constructors dependant on their prorotype! */
+
+```
