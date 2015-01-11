@@ -290,3 +290,39 @@ ben.move();
 ```
 
 Functions can store properties of objects.
+
+##Prototypal Classes
+Delegate lookup of move function to another prototypal class.
+
+```
+var Car = function(loc){
+	var obj = Object.create(Car.prototype); // Make new instance objects delegate their failed lookup to Car.methods - NO LONGER NEEDED TO COPY METHODS!
+	obj.loc = loc;
+	return obj;
+};
+
+Car.methods = {
+	move : function(){
+		this.loc++;
+	}
+};
+
+/*Built in ".methods object", this is ONLY naming.*/
+Car.prototype.move = function(){
+	this.loc++;	
+};
+
+console.log(amy.prototype.constructor) // Car
+console.log(amy instanceof Car) // true , instance of looks to see if there is Car.prototype in amy object
+```
+1. Function to create object 
+2. Line to generate instance of object
+3. Delegation from new obj to some prototype object
+4. Something to augment this object to make it unique from other objects in same class
+
+...Very common process, JS has built in **.prototype** object to serve EXACT same purpose as **.methods**
+
+amy's prototype is Car.prototype means different than Car's prototype is Car.prototype.
+Car is a function object, thus failed lookups will fall back to a **function prototype**, where as amy's prototype is **Car.prototype**
+
+When car functions run, it will delegate their failed lookups to Car.prototype.
