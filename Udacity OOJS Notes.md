@@ -190,3 +190,61 @@ obj1.constructor() = Object
 /*The two vars above have their own constructors dependant on their prorotype! */
 
 ```
+
+##Object Decorator Pattern
+
+Reusing code!
+
+```
+//run.js
+var amy = {loc:1};
+amy.loc++;
+var ben = {loc:9};
+ben.loc++;
+
+//library.js
+var move = function(car){ // This is a decorator pattern
+	car.loc++;
+};
+
+//run.js
+var amy = {loc:1};
+move(amy);
+var ben = {loc.9};
+move(ben);
+
+//library.js
+var carlike = function(obj, loc){ // This is a decorator pattern
+	obj.loc = loc;
+	return obj;
+};
+
+var move = function(car){
+	car.loc++;
+};
+
+//run.js
+var amy = carlike({}, 1);
+move(amy);
+var ben = carlike({}, 9);
+move(ben);
+
+//library.js
+var carlike = function(obj, loc){ // This is a decorator pattern
+	obj.loc = loc;
+	obj.move = function(){ // New closure scope is created
+		obj.loc++;
+	};
+	return obj;
+};
+
+//run.js
+var amy = carlike({}, 1);
+amy.move;
+var ben = carlike({}, 9);
+ben.move;
+```
+
+Abstract out code because
+1. Less code
+2. Faster refactoring
