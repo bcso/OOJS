@@ -377,3 +377,32 @@ Car.prototype.move = function(){ // Similarities between all object instances of
 var ben = new Car(9);
 ben.move();
 ```
+
+##Superclass and Subclasses
+Create a functional super class Car that has subclass Van and Cop.
+```
+//library.js
+var Car = function(){
+	var obj = {loc:loc};
+	obj.move = function(){
+		obj.loc++;
+	};
+	return obj
+};
+var Van = function(loc){
+	var obj = Car(loc);
+	obj.grab = function{/*...*/};
+	return obj;
+};
+var Cop = function(loc){
+	var obj = Car(loc);
+	obj.call = function{/*...*/};
+	return obj;
+};
+
+//run.js
+var amy = Van(1);
+amy.move();
+var cal = Cop(9);
+cal.move();
+```
