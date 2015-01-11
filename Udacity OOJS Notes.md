@@ -326,3 +326,54 @@ amy's prototype is Car.prototype means different than Car's prototype is Car.pro
 Car is a function object, thus failed lookups will fall back to a **function prototype**, where as amy's prototype is **Car.prototype**
 
 When car functions run, it will delegate their failed lookups to Car.prototype.
+
+
+##Pseudoclassical Patterns
+We can re-write our code so as to use the **new** operator that so many other classes use...
+
+Syntactic convienience!
+```
+var Car = function(loc){
+	var obj = Object.create(Car.prototype);
+	obj.loc = loc;
+	return obj;
+};
+
+Car.prototype.move = function(){
+	this.loc++;	
+};
+```
+
+Will now look like this during interpretation
+```
+//library.js
+var Car = function(loc){
+	this = Object.create(Car.prototype); // interpreter inserted
+	this.loc = loc;
+	return this; // interpreter inserted
+};
+
+Car.prototype.move = function(){
+	this.loc++;	
+};
+
+//run.js
+var ben = new Car(9);
+ben.move();
+```
+
+Will now **finally** look like this
+```
+//library.js
+var Car = function(loc){ // Differences between all object instances of this class.
+	this.loc = loc;
+};
+
+Car.prototype.move = function(){ // Similarities between all object instances of this class.
+	this.loc++;	
+};
+
+//run.js
+var ben = new Car(9);
+ben.move();
+```
