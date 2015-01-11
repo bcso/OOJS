@@ -240,11 +240,53 @@ var carlike = function(obj, loc){ // This is a decorator pattern
 
 //run.js
 var amy = carlike({}, 1);
-amy.move;
+amy.move();
 var ben = carlike({}, 9);
-ben.move;
+ben.move();
 ```
 
 Abstract out code because
 1. Less code
 2. Faster refactoring
+
+##Functional Classes
+Classes build the object that it will augment
+VS.
+Decoraters accept the object that it will augment
+
+```
+/*Class*/
+carlike = function(var){
+	//?...	
+};
+
+/*Decorator*/
+carlike = function(obj, var){
+	//?....
+};
+```
+
+```
+//library.js
+var Car = function(loc){
+	var obj = {loc:loc};
+	extend(obj, Car.methods);
+	obj.move = move;
+	return obj;
+};
+
+Car.methods = {
+	move : function(){ //Prevents new UNIQUE function "move" to be created everytime the object is instantiated
+		this.loc++;	
+	};	
+};
+
+
+//run.js
+var amy = Car(1);
+amy.move();
+var ben = Car(9);
+ben.move();
+```
+
+Functions can store properties of objects.
