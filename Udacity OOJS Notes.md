@@ -379,7 +379,7 @@ ben.move();
 ```
 
 ##Superclass and Subclasses
-Create a functional super class Car that has subclass Van and Cop.
+Create a **functional** super class Car that has subclass Van and Cop.
 ```
 //library.js
 var Car = function(){
@@ -406,3 +406,29 @@ amy.move();
 var cal = Cop(9);
 cal.move();
 ```
+
+##Pseudoclassical Subclasses
+```
+var Car = function(loc){
+	this.loc = loc;
+};
+Car.prototype.move = function(){
+	this.loc++;
+};
+
+var Van = function(loc){
+	Car.call(this, loc); // Call JUST  the car constructor in this scope with loc var. No car prototype
+};
+Van.prototype = Object.create(Car.prototype); // Create delegation of Van.prototype to Car.prototype for failed lookup of .move()
+
+Van.prototype.grab = function(){/*...*/};
+Van.prototype.constructor = Van; // This is lost when we created Van.prototype as a delegation of Car.prototype
+var zed = new Car(3);
+zed.move();
+
+var amy = new Van(9);
+amy.move();
+amy.grab();
+```
+
+*N.B.: Van.prototype = new Car() is still used by alot of people for delegating failed calls from Van.protoytpe to Car.prototype*
