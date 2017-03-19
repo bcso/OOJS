@@ -1,6 +1,6 @@
-#Udacity OOJS Notes
+# Udacity OOJS Notes
 
-##Clojures
+## Clojures
 - Declare global array to keep track of functions even after they have been returned in a lexical scope.
 
 ```
@@ -47,7 +47,7 @@ sagas[1]; // Logs "BoyGetsET"
 sagas[0]; // Logs "BoyPinsRat"
 
 ```
-####Mock Compiler 
+#### Mock Compiler 
 ```
 ####MAIN 
     sagas = [{f}, {f}]
@@ -66,11 +66,11 @@ sagas[0]; // Logs "BoyPinsRat"
 		####SAGAS2.1
 			deed = "Gets"
 ```
-##'this' Keyword
+## 'this' Keyword
 - this will be automatically bound to the correct object automatically
 - How the interpreter knows which binding is correct, resembles the rules for positional function parameters
 
-####What it DOESN'T map to
+#### What it DOESN'T map to
 ```	
 var obj = { // .. the object created by the literal this appears within
 	fn = function(a,b){ // .. the fn this appears within
@@ -84,12 +84,12 @@ obj.fn(3,4); // .. an "execution context"
 
 ```
 
-####What it DOES map to
+#### What it DOES map to
 ```
 obj.fn(3,4); // The object to the left of the dot (different from the literal definition!)
 ```
 
-####Examples
+#### Examples
 ```
 var fn = function(one, two){
 	log(this, one, two);
@@ -147,7 +147,7 @@ log(this) // <global>
 new r.method(g,b) // brand new object
 ```
 
-##Prototype Chains
+## Prototype Chains
 Can copy an object to another object s.t. second object has all properties first one has. OR Can make new object behave like the original by delegating failed lookups to the original one.
 
 **Why?**
@@ -174,7 +174,7 @@ log(blue.z); // undef
 log(rose.z); // 3
 
 ```
-####The chain
+#### The chain
 ...Rose has a fallback too, the Object prototype. All objects in JS have a top level prototype to fall back to, the **Object** prototype. Arrays have an independant array prototype, which is delegated to by the Object prototype.
 
 ```
@@ -191,7 +191,7 @@ obj1.constructor() = Object
 
 ```
 
-##Object Decorator Pattern
+## Object Decorator Pattern
 
 Reusing code!
 
@@ -249,7 +249,7 @@ Abstract out code because
 1. Less code
 2. Faster refactoring
 
-##Functional Classes
+## Functional Classes
 Classes build the object that it will augment
 VS.
 Decoraters accept the object that it will augment
@@ -291,7 +291,7 @@ ben.move();
 
 Functions can store properties of objects.
 
-##Prototypal Classes
+## Prototypal Classes
 Delegate lookup of move function to another prototypal class.
 
 ```
@@ -328,7 +328,7 @@ Car is a function object, thus failed lookups will fall back to a **function pro
 When car functions run, it will delegate their failed lookups to Car.prototype.
 
 
-##Pseudoclassical Patterns
+## Pseudoclassical Patterns
 We can re-write our code so as to use the **new** operator that so many other classes use...
 
 Syntactic convienience!
@@ -378,7 +378,7 @@ var ben = new Car(9);
 ben.move();
 ```
 
-##Superclass and Subclasses
+## Superclass and Subclasses
 Create a **functional** super class Car that has subclass Van and Cop.
 ```
 //library.js
@@ -407,7 +407,7 @@ var cal = Cop(9);
 cal.move();
 ```
 
-##Pseudoclassical Subclasses
+## Pseudoclassical Subclasses
 ```
 var Car = function(loc){
 	this.loc = loc;
